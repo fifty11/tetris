@@ -6,9 +6,11 @@
 
 #define L 0
 #define BACKWARDS_L 1
-#define BAR 2
-#define SQUARE 3
-#define PYRAMID 4
+#define S 2
+#define BACKWARDS_S 3
+#define BAR 4
+#define PYRAMID 5
+#define SQUARE 6
 
 
 void display(void);

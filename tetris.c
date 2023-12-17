@@ -6,19 +6,8 @@
 
 static char isTouhing(char direction) { return 0; }
 
-static void turn(uint16_t* tetrino, char direction) {
-	switch (direction) {
-		case 0:
-		break;
-		case 1:
-		break;
-		case 2:
-		break;
-		case 3:
-		break;
-		case 4:
-		break;
-	}
+static void setDirection(uint16_t* tetrino, char type, char direction) {
+	
 }
 
 void display(void) { return; }
