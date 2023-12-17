@@ -1,0 +1,28 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-O3",
+      "-c",
+      "-o",
+      "./build/main.o",
+      "main.c"
+    ],
+    "directory": "/home/sixten/Programming/games/tetris",
+    "file": "/home/sixten/Programming/games/tetris/main.c",
+    "output": "/home/sixten/Programming/games/tetris/build/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-O3",
+      "-c",
+      "-o",
+      "./build/tetris.o",
+      "tetris.c"
+    ],
+    "directory": "/home/sixten/Programming/games/tetris",
+    "file": "/home/sixten/Programming/games/tetris/tetris.c",
+    "output": "/home/sixten/Programming/games/tetris/build/tetris.o"
+  }
+]
