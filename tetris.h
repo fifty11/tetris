@@ -1,6 +1,7 @@
 #ifndef TETRIS_HEADER_GUARD
 #define TETRIS_HEADER_GUARD
 
+#include <stdint.h>
 #define RIGHT 0
 #define LEFT 1
 
@@ -12,6 +13,7 @@
 #define PYRAMID 5
 #define SQUARE 6
 
+uint16_t tetrinos[7][4];
 
 void display(void);
 void keyPress(void);
