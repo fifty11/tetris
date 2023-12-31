@@ -2,6 +2,7 @@
 #define TETRIS_HEADER_GUARD
 
 #include <stdint.h>
+#include <stdio.h>
 #define RIGHT 0
 #define LEFT 1
 
