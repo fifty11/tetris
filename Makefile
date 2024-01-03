@@ -2,8 +2,7 @@ BUILD_DIR = ./build
 EXECUTABLE = tetriz
 
 C_SOURCES = \
-		   main.c \
-		   tetris.c 
+		   main.c
 
 OBJECTS = $(notdir $(C_SOURCES:.c=.o))
 
@@ -12,7 +11,7 @@ clean:
 
 all-terminal:
 	# mkdir -p $(BUILD_DIR)
-	clang -O2 -c $(C_SOURCES)
+	clang -c $(C_SOURCES)
 	clang -o $(EXECUTABLE) $(OBJECTS)
 
 all-gui:

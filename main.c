@@ -1,8 +1,8 @@
-#include "tetris.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "tetris.h"
 
 char game;
 
@@ -10,9 +10,9 @@ char game;
 int main(int argc, char **argv) {
 	// constants:
 	struct Tetrinos {
-		uint16_t current;
-		uint16_t saved;
-		uint16_t tetrinoList[3];
+		uint8_t current;
+		uint8_t saved;
+		uint8_t tetrinoList[3];
 	} tetrino;
 
 	// vars
