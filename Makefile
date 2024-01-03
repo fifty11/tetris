@@ -2,23 +2,26 @@ BUILD_DIR = ./build
 EXECUTABLE = tetriz
 
 C_SOURCES = \
-		   main.c
+main.c \
+tetris.c
 
 OBJECTS = $(notdir $(C_SOURCES:.c=.o))
+COMPILER = clang
 
 clean:
 	rm -rf $(OBJECTS) $(EXECUTABLE)
 
+all:
+	@make all-terminal
+
 all-terminal:
-	# mkdir -p $(BUILD_DIR)
-	clang -c $(C_SOURCES)
-	clang -o $(EXECUTABLE) $(OBJECTS)
+	$(COMPILER) -DTERMINAL_DISPLAY -c $(C_SOURCES)
+	$(COMPILER) -DTERMINAL_DISPLAY -o $(EXECUTABLE) $(OBJECTS)
+
+test-terminal:
+	$(COMPILER) -v -c $(C_SOURCES)
+	$(COMPILER) -v -o $(EXECUTABLE) $(OBJECTS)
 
 all-gui:
+test-gui:
 
-test:
-	mkdir -p build
-	rm -rf build/*
-	clang -c -o ./build/main.o main.c 
-	clang -c -o ./build/tetris.o tetris.c 
-	clang -v -o ./build/tetris ./build/tetris.o ./build/main.o

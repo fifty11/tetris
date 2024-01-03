@@ -2,27 +2,71 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "tetris.h"
-
-char game;
 
 
 int main(int argc, char **argv) {
-	// constants:
-	struct Tetrinos {
-		uint8_t current;
-		uint8_t saved;
-		uint8_t tetrinoList[3];
-	} tetrino;
-
 	// vars
 	int seed;
 
-	game = true;
 
-	// game
+	// game setup
 	if (argc > 1)
-		seed = atoi(argv[0]);
+		seed = atoi(argv[1]);
+
+	//gmae loop
+	Forever
+	{
+		display();
+		
+
+		usleep(TICK_RATE);
+		
+		
+		if(loseCheck())
+			lose();
+
+
+		globals.keyPressed=keyPress();
+
+		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(&tetrino, 1, 0, 0))
+			++tetrino.x;
+		if((globals.keyPressed & LEFT_MOVE) && moveCheck(&tetrino, -1, 0, 0))
+			--tetrino.x;
+		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(&tetrino, 0, 0, 1))
+		{
+			if(tetrino.currentAngle==4)
+				tetrino.currentAngle=1;
+			else
+				++tetrino.currentAngle;
+		}
+		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(&tetrino, 0, 0, -1))
+		{
+			if(tetrino.currentAngle==1)
+				tetrino.currentAngle=4;
+			else
+				--tetrino.currentAngle;
+		}
+		if(globals.keyPressed & SLAM_MOVE)
+			SLAMIT();
+		if(globals.keyPressed & FASTER_MOVE && moveCheck(&tetrino, 0, 1, 0))
+		{
+			++tetrino.y;
+			continue;//continius the forever loop and should display again
+		}
+	}
+
+
+	return 0; // return statment more info:
+						// https://www.geeksforgeeks.org/return-statement-in-c/
+}
+
+
+
+
+/*
+ *
 	for (int i = 0; i < 7; ++i)
 	{
 		for (int j = 0; j < 4; ++j)
@@ -40,7 +84,4 @@ int main(int argc, char **argv) {
 		}
 		printf("\n\n\n");
 	}
-
-	return 0; // return statment more info:
-						// https://www.geeksforgeeks.org/return-statement-in-c/
-}
+ */
