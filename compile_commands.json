@@ -6,8 +6,8 @@
       "-c",
       "main.c"
     ],
-    "directory": "/home/sixten/Programming/games/tetris",
-    "file": "/home/sixten/Programming/games/tetris/main.c"
+    "directory": "/home/sixten/Programming/Games/Tetris",
+    "file": "/home/sixten/Programming/Games/Tetris/main.c"
   },
   {
     "arguments": [
@@ -16,8 +16,8 @@
       "-c",
       "tetris.c"
     ],
-    "directory": "/home/sixten/Programming/games/tetris",
-    "file": "/home/sixten/Programming/games/tetris/tetris.c"
+    "directory": "/home/sixten/Programming/Games/Tetris",
+    "file": "/home/sixten/Programming/Games/Tetris/tetris.c"
   },
   {
     "arguments": [
@@ -50,7 +50,7 @@
       "-mllvm",
       "-treat-scalable-fixed-error-as-warning",
       "-debugger-tuning=gdb",
-      "-fcoverage-compilation-dir=/home/sixten/Programming/games/tetris",
+      "-fcoverage-compilation-dir=/home/sixten/Programming/Games/Tetris",
       "-resource-dir",
       "/usr/lib/clang/16",
       "-D",
@@ -65,7 +65,7 @@
       "/include",
       "-internal-externc-isystem",
       "/usr/include",
-      "-fdebug-compilation-dir=/home/sixten/Programming/games/tetris",
+      "-fdebug-compilation-dir=/home/sixten/Programming/Games/Tetris",
       "-ferror-limit",
       "19",
       "-stack-protector",
@@ -80,9 +80,9 @@
       "main.o",
       "main.c"
     ],
-    "directory": "/home/sixten/Programming/games/tetris",
-    "file": "/home/sixten/Programming/games/tetris/main.c",
-    "output": "/home/sixten/Programming/games/tetris/main.o"
+    "directory": "/home/sixten/Programming/Games/Tetris",
+    "file": "/home/sixten/Programming/Games/Tetris/main.c",
+    "output": "/home/sixten/Programming/Games/Tetris/main.o"
   },
   {
     "arguments": [
@@ -115,7 +115,7 @@
       "-mllvm",
       "-treat-scalable-fixed-error-as-warning",
       "-debugger-tuning=gdb",
-      "-fcoverage-compilation-dir=/home/sixten/Programming/games/tetris",
+      "-fcoverage-compilation-dir=/home/sixten/Programming/Games/Tetris",
       "-resource-dir",
       "/usr/lib/clang/16",
       "-D",
@@ -130,7 +130,7 @@
       "/include",
       "-internal-externc-isystem",
       "/usr/include",
-      "-fdebug-compilation-dir=/home/sixten/Programming/games/tetris",
+      "-fdebug-compilation-dir=/home/sixten/Programming/Games/Tetris",
       "-ferror-limit",
       "19",
       "-stack-protector",
@@ -145,8 +145,8 @@
       "tetris.o",
       "tetris.c"
     ],
-    "directory": "/home/sixten/Programming/games/tetris",
-    "file": "/home/sixten/Programming/games/tetris/tetris.c",
-    "output": "/home/sixten/Programming/games/tetris/tetris.o"
+    "directory": "/home/sixten/Programming/Games/Tetris",
+    "file": "/home/sixten/Programming/Games/Tetris/tetris.c",
+    "output": "/home/sixten/Programming/Games/Tetris/tetris.o"
   }
 ]
