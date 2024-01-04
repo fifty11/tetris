@@ -19,10 +19,11 @@
 #define FASTER_MOVE (1<<5)
 #define SLAM_MOVE (1<<6)
 
-#define UP 1
-#define RIGHT 2
-#define DOWN 3
-#define LEFT 4
+#define RIGHT 1
+#define LEFT 2
+#define UP 3
+#define DOWN 4
+#define NONE 5
 
 #define L 0
 #define BACKWARDS_L 1
@@ -33,11 +34,12 @@
 #define SQUARE 6
 
 extern uint16_t tetrinos[7][4];
+extern uint8_t grid[10][20]; // use the defines of the tetrinos to shift a bit to the right to indicate color
 
 struct Tetrinos {
 	uint8_t x;
 	uint8_t y;
-	uint8_t currentTetrino;
+	uint8_t currentTetrino; //used for color coating
 	uint8_t currentAngle;
 	uint8_t waitTime;
 	uint8_t saved;

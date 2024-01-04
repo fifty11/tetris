@@ -30,27 +30,23 @@ int main(int argc, char **argv) {
 
 		globals.keyPressed=keyPress();
 
-		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(&tetrino, 1, 0, 0))
+		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(&tetrino, RIGHT, NONE, NONE))
 			++tetrino.x;
-		if((globals.keyPressed & LEFT_MOVE) && moveCheck(&tetrino, -1, 0, 0))
+		if((globals.keyPressed & LEFT_MOVE) && moveCheck(&tetrino, LEFT, NONE, NONE))
 			--tetrino.x;
-		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(&tetrino, 0, 0, 1))
+		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(&tetrino, NONE, NONE, RIGHT))
 		{
-			if(tetrino.currentAngle==4)
+			if(++tetrino.currentAngle==5)
 				tetrino.currentAngle=1;
-			else
-				++tetrino.currentAngle;
 		}
-		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(&tetrino, 0, 0, -1))
+		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(&tetrino, NONE, NONE, LEFT))
 		{
-			if(tetrino.currentAngle==1)
+			if(--tetrino.currentAngle==0)
 				tetrino.currentAngle=4;
-			else
-				--tetrino.currentAngle;
 		}
 		if(globals.keyPressed & SLAM_MOVE)
 			SLAMIT();
-		if(globals.keyPressed & FASTER_MOVE && moveCheck(&tetrino, 0, 1, 0))
+		if(globals.keyPressed & FASTER_MOVE && moveCheck(&tetrino, NONE, DOWN, NONE))
 		{
 			++tetrino.y;
 			continue;//continius the forever loop and should display again

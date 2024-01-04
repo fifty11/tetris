@@ -1,5 +1,6 @@
 #include "tetris.h"
 #include <stdint.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,7 +26,38 @@ void display(void) { return; };
 
 uint8_t keyPress(void) { return 0; };
 uint8_t loseCheck(void) { return 0; };
-uint8_t moveCheck(struct Tetrinos* tetrinoControlStruct, int8_t xChange, int8_t yChange, int8_t angleChange) { return 0; }
+
+
+uint8_t moveCheck( // OBS CAN ONLY BE RUN with either x change, y change or angle NOT MORE THAN 1 // todo make clangd show this message
+struct Tetrinos* tetrinoControlStruct,
+int8_t xChange,
+int8_t yChange,
+int8_t angleChange)
+{
+	if((xChange && yChange) || (yChange && angleChange) || (angleChange && xChange))
+		return 0;
+	uint16_t newTetrino;
+	if(xChange)
+	{
+	}
+	else if(yChange) // a y change value of negative is never expected so it will default too the yChange being down
+	{
+		for(uint8_t i=0; i<16; ++i)
+			if(tetrinoControlStruct->currentTetrino & (1<<i))
+				printf("TODOfix this so it return 1 if it can move down by 1");
+	}
+	else if(angleChange)
+	{
+		if(angleChange==LEFT)
+			newTetrino=tetrinos[tetrinoControlStruct->currentTetrino][tetrinoControlStruct->currentAngle-1 ? tetrinoControlStruct->currentAngle-1 : 4];
+		else
+			newTetrino=tetrinos[tetrinoControlStruct->currentTetrino][(tetrinoControlStruct->currentAngle+1)==5 ? 1 : tetrinoControlStruct->currentAngle+1];
+	}
+
+	return 1;
+}
+
+
 void rotate(void) { return; };
 void lose(void)
 {
