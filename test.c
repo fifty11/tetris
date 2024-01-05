@@ -1,5 +1,8 @@
 #include <stdio.h>
 int main()
 {
-	printf("%d\n", 4>>1);
+	printf("%d", 4>>1);
+	puts("hell");
+	putchar('a');
+	puts("a");
 }

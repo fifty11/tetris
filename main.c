@@ -15,6 +15,13 @@ int main(int argc, char **argv) {
 	if (argc > 1)
 		seed = atoi(argv[1]);
 
+	tetrino.x=1;
+	tetrino.y=1;
+	tetrino.currentTetrino=BAR;
+	tetrino.currentAngle=DOWN_ANGLE;
+	tetrino.linesCleared=0;
+	globals.keyPressed=0;
+
 	//gmae loop
 	Forever
 	{
@@ -30,28 +37,36 @@ int main(int argc, char **argv) {
 
 		globals.keyPressed=keyPress();
 
-		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(&tetrino, RIGHT, NONE, NONE))
+		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(RIGHT, NONE, NONE))
 			++tetrino.x;
-		if((globals.keyPressed & LEFT_MOVE) && moveCheck(&tetrino, LEFT, NONE, NONE))
+		if((globals.keyPressed & LEFT_MOVE) && moveCheck(LEFT, NONE, NONE))
 			--tetrino.x;
-		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(&tetrino, NONE, NONE, RIGHT))
+		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(NONE, NONE, RIGHT))
 		{
 			if(++tetrino.currentAngle==5)
 				tetrino.currentAngle=1;
 		}
-		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(&tetrino, NONE, NONE, LEFT))
+		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(NONE, NONE, LEFT))
 		{
 			if(--tetrino.currentAngle==0)
 				tetrino.currentAngle=4;
 		}
 		if(globals.keyPressed & SLAM_MOVE)
 			SLAMIT();
-		if(globals.keyPressed & FASTER_MOVE && moveCheck(&tetrino, NONE, DOWN, NONE))
+		if(globals.keyPressed & FASTER_MOVE && moveCheck(NONE, DOWN, NONE))
 		{
 			++tetrino.y;
 			continue;//continius the forever loop and should display again
 		}
 	}
+	/*
+	 * for(int i=0; i<16; ++i)
+	{
+		printf("%d ", tetrinos[tetrino.currentTetrino][tetrino.currentAngle]&(1<<i) ? 1 : 0);
+		if((i+1)%4==0)
+			putchar('\n');
+	}
+	*/
 
 
 	return 0; // return statment more info:
