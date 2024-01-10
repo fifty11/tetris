@@ -17,24 +17,26 @@ int main(int argc, char **argv) {
 
 	tetrino.x=1;
 	tetrino.y=1;
-	tetrino.currentTetrino=BAR;
-	tetrino.currentAngle=DOWN_ANGLE;
+	tetrino.currentTetrino=L;
+	tetrino.currentAngle=UP_ANGLE;
 	tetrino.linesCleared=0;
-	globals.keyPressed=0;
+	globals.keyPressed=0x00;
 
 	//gmae loop
+	int fourth=0;
 	Forever
 	{
 		display();
-		
 
-		usleep(TICK_RATE);
-		
-		
+
+		sleep(TICK_RATE);
+
+
 		if(loseCheck())
 			lose();
 
 
+		//globals.keyPressed=0x00;
 		globals.keyPressed=keyPress();
 
 		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(RIGHT, NONE, NONE))
@@ -43,13 +45,13 @@ int main(int argc, char **argv) {
 			--tetrino.x;
 		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(NONE, NONE, RIGHT))
 		{
-			if(++tetrino.currentAngle==5)
-				tetrino.currentAngle=1;
+			if(++tetrino.currentAngle==4)
+				tetrino.currentAngle=0;
 		}
 		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(NONE, NONE, LEFT))
 		{
 			if(--tetrino.currentAngle==0)
-				tetrino.currentAngle=4;
+				tetrino.currentAngle=3;
 		}
 		if(globals.keyPressed & SLAM_MOVE)
 			SLAMIT();
@@ -57,6 +59,12 @@ int main(int argc, char **argv) {
 		{
 			++tetrino.y;
 			continue;//continius the forever loop and should display again
+		}
+		if(++fourth==4)
+		{
+			if(tetrino.currentTetrino++==SQUARE)
+				tetrino.currentTetrino=L;
+			fourth=0;
 		}
 	}
 	/*

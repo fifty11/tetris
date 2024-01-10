@@ -10,7 +10,7 @@
 
 #define Forever for(;;) 
 
-#define TICK_RATE 5000
+#define TICK_RATE 1
 
 #define GRID_HEIGHT 20 // do not change the size of the grid these are just to make the code more readable
 #define GRID_WIDTH 10
@@ -30,10 +30,10 @@
 #define DOWN 4
 #define NONE 5
 
-#define RIGHT_ANGLE 0
-#define LEFT_ANGLE 1
-#define UP_ANGLE 2
-#define DOWN_ANGLE 3
+#define UP_ANGLE 0
+#define RIGHT_ANGLE 1
+#define DOWN_ANGLE 2
+#define LEFT_ANGLE 3
 
 #define L 0
 #define BACKWARDS_L 1
@@ -45,7 +45,7 @@
 
 #ifdef TERMINAL_DISPLAY
 
-#define BLANK_COLOR 'a'
+#define BLANK_COLOR ' '
 #define L_COLOR 'b'
 #define BACKWARDS_L_COLOR 'c'
 #define S_COLOR 'd'
@@ -74,7 +74,7 @@ extern uint8_t grid[GRID_WIDTH][GRID_HEIGHT]; // use the defines of the tetrinos
 struct Tetrinos {
 	uint8_t x;
 	uint8_t y;
-	uint8_t currentTetrino; //used for color coating
+	uint8_t currentTetrino; //used for color coating and shape
 	uint8_t currentAngle;
 	uint8_t graceTick; // this is a toggle
 	uint8_t saved;
