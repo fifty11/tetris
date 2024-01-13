@@ -162,14 +162,22 @@ uint8_t moveCheck( // OBS CAN ONLY BE RUN with either x change, y change or angl
 int8_t xChange,
 int8_t yChange,
 int8_t angleChange,
+int8_t changeAngle, // should be NONE unless change block isent
 int8_t changeBlock) // could be used if a pice has been changed out // OBS SHOULD BE 0 IF NO NEW PIce IS USED
 {
 	uint16_t newTetrino;
-	if(xChange)
+	if(changeBlock) // OBS xChange and yChange turn into xSet and ySet if changeBlock is true
+	{
+		for(uint8_t i=0; i<16; ++i)
+			if(tetrinos[changeBlock][changeAngle] & (1<<i))
+				if(grid[xChange+(i%4)+1][yChange+((i-(i%4)/4))])
+					return 0;
+	}
+	else if(xChange)
 	{
 		if(xChange==RIGHT)
 			for(uint8_t i=0; i<16; ++i)
-				if(tetrino.currentTetrino & (1<<i))
+				if(tetrinos[tetrino.currentTetrino][tetrino.currentAngle] & (1<<i))
 					if(grid[tetrino.x+(i%4)+1][tetrino.y+((i-(i%4)/4))])
 						return 0;
 		if(xChange==LEFT)

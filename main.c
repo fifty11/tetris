@@ -26,6 +26,14 @@ int main(int argc, char **argv) {
 	int fourth=0;
 	Forever
 	{
+		if(++fourth==4)
+		{
+			if(tetrino.currentTetrino++==SQUARE)
+				tetrino.currentTetrino=L;
+			fourth=0;
+		}
+
+
 		display();
 
 
@@ -39,32 +47,26 @@ int main(int argc, char **argv) {
 		//globals.keyPressed=0x00;
 		globals.keyPressed=keyPress();
 
-		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(RIGHT, NONE, NONE, NONE))
+		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(RIGHT, NONE, NONE, NONE, NONE))
 			++tetrino.x;
-		if((globals.keyPressed & LEFT_MOVE) && moveCheck(LEFT, NONE, NONE, NONE))
+		if((globals.keyPressed & LEFT_MOVE) && moveCheck(LEFT, NONE, NONE, NONE, NONE))
 			--tetrino.x;
-		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(NONE, NONE, RIGHT, NONE))
+		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(NONE, NONE, RIGHT, NONE, NONE))
 		{
 			if(++tetrino.currentAngle==4)
 				tetrino.currentAngle=0;
 		}
-		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(NONE, NONE, LEFT, NONE))
+		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(NONE, NONE, LEFT, NONE, NONE))
 		{
 			if(--tetrino.currentAngle==0)
 				tetrino.currentAngle=3;
 		}
 		if(globals.keyPressed & SLAM_MOVE)
 			SLAMIT();
-		if(globals.keyPressed & FASTER_MOVE && moveCheck(NONE, DOWN, NONE, NONE))
+		if(globals.keyPressed & FASTER_MOVE && moveCheck(NONE, DOWN, NONE, NONE, NONE))
 		{
 			++tetrino.y;
 			continue;//continius the forever loop and should display again
-		}
-		if(++fourth==4)
-		{
-			if(tetrino.currentTetrino++==SQUARE)
-				tetrino.currentTetrino=L;
-			fourth=0;
 		}
 	}
 	/*
