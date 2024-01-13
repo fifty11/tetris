@@ -22,6 +22,9 @@ int main(int argc, char **argv) {
 	tetrino.linesCleared=0;
 	globals.keyPressed=0x00;
 
+	for(int i=0; i<3; ++i)
+		tetrino.tetrinoList[i]=rand()%7; //  is the amount of tetrinos
+
 	//gmae loop
 	int fourth=0;
 	Forever
@@ -47,25 +50,47 @@ int main(int argc, char **argv) {
 		//globals.keyPressed=0x00;
 		globals.keyPressed=keyPress();
 
-		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(RIGHT, NONE, NONE, NONE, NONE))
+		if((globals.keyPressed & RIGHT_MOVE) && moveCheck(tetrino.x+1, tetrino.y, tetrino.currentAngle, tetrino.currentTetrino))
 			++tetrino.x;
-		if((globals.keyPressed & LEFT_MOVE) && moveCheck(LEFT, NONE, NONE, NONE, NONE))
+
+		if((globals.keyPressed & LEFT_MOVE) && moveCheck(tetrino.x-1, tetrino.y, tetrino.currentAngle, tetrino.currentTetrino))
 			--tetrino.x;
-		if((globals.keyPressed & ROTATE_CLOCK_MOVE) && moveCheck(NONE, NONE, RIGHT, NONE, NONE))
+
+		if((globals.keyPressed & ROTATE_CLOCK_MOVE))
 		{
-			if(++tetrino.currentAngle==4)
-				tetrino.currentAngle=0;
+			if(tetrino.currentAngle==3) // 3 is the biggest angle
+			{
+				if(moveCheck(tetrino.x, tetrino.y, UP_ANGLE, tetrino.currentTetrino))
+					tetrino.currentAngle=UP_ANGLE;
+			}
+			else
+			{
+				if(moveCheck(tetrino.x, tetrino.y, tetrino.currentAngle+1, tetrino.currentTetrino))
+						++tetrino.currentAngle;
+			}
 		}
-		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE) && moveCheck(NONE, NONE, LEFT, NONE, NONE))
+
+		if((globals.keyPressed & ROTATE_COUNTER_CLOCK_MOVE))
 		{
-			if(--tetrino.currentAngle==0)
-				tetrino.currentAngle=3;
+			if(tetrino.currentAngle==0)
+			{
+				if(moveCheck(tetrino.x, tetrino.y, LEFT_ANGLE, tetrino.currentTetrino))
+					tetrino.currentAngle=LEFT_ANGLE;
+			}
+			else
+			{
+				if(moveCheck(tetrino.x, tetrino.y, tetrino.currentAngle-1, tetrino.currentTetrino))
+						--tetrino.currentAngle;
+			}
+				
 		}
+
 		if(globals.keyPressed & SLAM_MOVE)
 			SLAMIT();
-		if(globals.keyPressed & FASTER_MOVE && moveCheck(NONE, DOWN, NONE, NONE, NONE))
+
+		if(globals.keyPressed & FASTER_MOVE && moveCheck(tetrino.x, tetrino.y+1, tetrino.currentAngle, tetrino.currentTetrino))
 		{
-			++tetrino.y;
+			++tetrino.y;//obs this will slam really fast if there is no imunity frame
 			continue;//continius the forever loop and should display again
 		}
 	}

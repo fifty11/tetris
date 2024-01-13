@@ -95,7 +95,13 @@ void display(void);
 uint8_t keyPress(void);
 void clearLines();
 uint8_t loseCheck(void);
-uint8_t moveCheck(int8_t xChange, int8_t yChange, int8_t angleChange, int8_t changeAngle, int8_t changeBlock);
+
+uint8_t moveCheck(
+int8_t xPos,
+int8_t yPos,
+int8_t angle, 
+int8_t tetrino);
+
 void rotate(void);
 void lose(void);
 void SLAMIT();
